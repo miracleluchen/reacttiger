@@ -5,6 +5,8 @@
 import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 
+import movieRequest from './MovieSagas'
+
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* loginRequest(action) {
     try {
@@ -31,7 +33,10 @@ function* loginRequest(action) {
  and only the latest one will be run.
  */
 function* mySaga() {
-    yield* takeLatest("LOGIN_REQUEST", loginRequest);
+    yield [
+        takeLatest("LOGIN_REQUEST", loginRequest),
+        takeLatest("MOVIE_REQUEST", movieRequest),
+    ]
 }
 
 export default mySaga;

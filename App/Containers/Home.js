@@ -10,7 +10,7 @@ export default class Home extends React.Component {
     render () {
         return (
             <View style={{flex:1, marginTop:64}}>
-                    <TouchableOpacity style={{width:200, height:50}} onPress={NavigationActions.login} >
+                    <TouchableOpacity style={{width:200, height:50}} onPress={NavigationActions.list} >
                         <Text>Component Examples Screen</Text>
                     </TouchableOpacity>
             </View>
