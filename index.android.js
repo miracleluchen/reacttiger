@@ -3,7 +3,7 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
+import './App/Config/ReactotronConfig'
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -11,6 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
+
 
 export default class ReactTiger extends Component {
   render() {

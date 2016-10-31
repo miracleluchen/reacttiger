@@ -2,7 +2,13 @@
  * Created by luch on 10/28/16.
  */
 
-export default function loginReducer(login={"status": 0}, action) {
+import { Map } from 'immutable'
+
+const INITIAL_STATE = Map({
+    status: 0,
+})
+
+export default function loginReducer(login=INITIAL_STATE, action) {
     switch (action.type) {
         case "LOGIN_REQUEST":
             return {"status": 0}

@@ -4,7 +4,6 @@
 
 import React from 'react'
 import { Platform, View, Text, ListView } from 'react-native'
-import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import * as MovieAction from '../Redux/Actions/MovieAction'
@@ -15,9 +14,7 @@ import styles from './Styles/MovieListStyle'
 class MovieList extends React.Component {
 
     componentWillMount() {
-        console.log("did mount")
-        console.log(this.props)
-        const dataObjects = this.props.getMovies()
+        this.props.getMovies()
 
         const rowHasChanged = (r1, r2) => r1 !== r2
 
@@ -54,7 +51,6 @@ class MovieList extends React.Component {
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow}
                 />
-
             </View>
         )
     }

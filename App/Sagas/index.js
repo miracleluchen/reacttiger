@@ -6,6 +6,8 @@ import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 
 import movieRequest from './MovieSagas'
+import Reactotron from 'reactotron-react-native'
+import ApiSauce from 'apisauce'
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* loginRequest(action) {
@@ -17,25 +19,17 @@ function* loginRequest(action) {
     }
 }
 
-// /*
-//  Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
-//  Allows concurrent fetches of user.
-//  */
-// function* mySaga() {
-//     yield* takeEvery("USER_FETCH_REQUESTED", fetchUser);
-// }
 
-/*
- Alternatively you may use takeLatest.
+const api = ApiSauce.create({
+    baseURL: 'https://raw.githubusercontent.com/'
+})
 
- Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
- dispatched while a fetch is already pending, that pending fetch is cancelled
- and only the latest one will be run.
- */
+api.addMonitor(Reactotron.apisauce)
+
 function* mySaga() {
     yield [
         takeLatest("LOGIN_REQUEST", loginRequest),
-        takeLatest("MOVIE_REQUEST", movieRequest),
+        takeLatest("MOVIE_REQUEST", movieRequest, api),
     ]
 }
 
